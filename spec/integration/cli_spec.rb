@@ -1,18 +1,17 @@
-require 'spec_helper'
+require "spec_helper"
 
-require 'corpus/cli'
+require "corpus-processor/cli"
 
-describe Corpus::Cli do
+describe CorpusProcessor::Cli do
   include FakeFS::SpecHelpers
-  subject(:cli) { Corpus::Cli.new }
+  subject(:cli) { CorpusProcessor::Cli.new }
 
-  let(:input_file)  { 'input_file'  }
-  let(:output_file) { 'output_file' }
+  let(:input_file)  { "input_file"  }
+  let(:output_file) { "output_file" }
 
   before do
-    File.open(input_file, 'w') { |file|
-      file.write(
-<<-INPUT
+    File.open(input_file, "w") { |file|
+      file.write <<-INPUT
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
 <colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
@@ -31,17 +30,15 @@ describe Corpus::Cli do
       no papado de <EM ID="H2-dftre765-11" CATEG="ACONTECIMENTO" TIPO="EVENTO">Avignon</EM>
       , o
 INPUT
-      )
     }
   end
 
-  describe '#process' do
+  describe "#process" do
     before do
       cli.process(input_file, output_file)
     end
 
-    specify { File.read(output_file).should ==
-<<-OUTPUT
+    specify { File.read(output_file).should == <<-OUTPUT }
 Fatores	O
 Demográficos	O
 e	O
@@ -99,6 +96,5 @@ de	O
 Avignon	O
 o	O
 OUTPUT
-    }
   end
 end

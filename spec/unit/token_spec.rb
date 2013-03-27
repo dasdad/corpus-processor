@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe CorpusProcessor::Token do
   subject { CorpusProcessor::Token.new }
