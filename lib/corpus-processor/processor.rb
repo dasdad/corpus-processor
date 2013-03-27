@@ -1,4 +1,4 @@
-module Corpus
+module CorpusProcessor
   class Processor
 
     CATEGORY_REGEX = /

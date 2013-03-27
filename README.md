@@ -1,34 +1,50 @@
-# CorpusProcessor
+Corpus Processor
+================
 
-TODO: Write a gem description
+Tool to work with [Corpus Linguistics](http://en.wikipedia.org/wiki/Corpus_linguistics). Corpus Processor converts _corpora_ between different formats for use in Natural Language Processing (NLP) tools.
 
-## Installation
+The first purpose of Corpus Processor and its current only feature is to transform _corpora_ found in [Linguateca](http://www.linguateca.pt) into the format used for training in [Stanford NER](http://nlp.stanford.edu/software/CRF-NER.shtml).
 
-Add this line to your application's Gemfile:
+[Linguateca](http://www.linguateca.pt) is an excellent source of _corpora_ in Portuguese.
 
-    gem 'corpus_processor'
+[Stanford NER](http://nlp.stanford.edu/software/CRF-NER.shtml) is an excellent implementation of [Named Entity Recognition](http://en.wikipedia.org/wiki/Named-entity_recognition).
 
-And then execute:
+Installation
+------------
 
-    $ bundle
+Corpus Processor is a [Ruby](http://www.ruby-lang.org/) [Gem](http://rubygems.org/). To install it, given a working installation of Ruby, run:
 
-Or install it yourself as:
+```bash
+$ gem install corpus_processor
+```
 
-    $ gem install corpus_processor
+Usage
+-----
 
-## Usage
+Run `corpus_processor help`.
 
-TODO: Write usage instructions here
+Contributing
+------------
 
-## Contributing
+1. Fork it.
+2. Create your feature branch (`git checkout -b my-new-feature`).
+3. Commit your changes (`git commit -am 'Add some feature'`).
+4. Push to the branch (`git push origin my-new-feature`).
+5. Create new Pull Request.
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Changelog
+---------
 
+### 0.0.1
 
+* [Harem](http://www.linguateca.pt/HAREM/) Parser.
+* [Stanford NER](http://nlp.stanford.edu/software/CRF-NER.shtml) Generator.
+
+Thanks
+------
+
+* *Diana Santos* and her team in [Linguateca](http://www.linguateca.pt) for the semantic annotated corpus in Portuguese.
+* *[Stanford NLP team](http://www-nlp.stanford.edu/)* for the [Stanford NER](http://nlp.stanford.edu/software/CRF-NER.shtml) tool.
 
 License
 -------

@@ -1,4 +1,4 @@
-module Corpus
+module CorpusProcessor
   class TokenFormatter
 
     def initialize(categories = Corpus::Categories::OUTPUT)

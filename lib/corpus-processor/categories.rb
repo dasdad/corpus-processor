@@ -1,4 +1,4 @@
-module Corpus
+module CorpusProcessor
   module Categories
     INPUT = {
       'PESSOA'      => :person,

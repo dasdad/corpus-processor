@@ -1,7 +1,7 @@
 require 'corpus'
 require 'thor'
 
-module Corpus
+module CorpusProcessor
   class Cli < ::Thor
 
     desc 'process [INPUT_FILE [OUTPUT_FILE]] ', 'convert corpus from HAREM format to Stanford-NER format'
