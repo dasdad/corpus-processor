@@ -1,4 +1,2 @@
-module CorpusProcessor
-  class Token < Struct.new(:word, :category)
-  end
+class CorpusProcessor::Token < Struct.new(:word, :category)
 end
