@@ -1,7 +1,7 @@
 Corpus Processor
 ================
 
-![Corpus Processor](http://badge.fury.io/rb/corpus-processor)
+[![Gem Version](https://fury-badge.herokuapp.com/rb/corpus-processor.png)](http://badge.fury.io/rb/corpus-processor)
 
 Tool to work with [Corpus Linguistics](http://en.wikipedia.org/wiki/Corpus_linguistics). Corpus Processor converts _corpora_ between different formats for use in Natural Language Processing (NLP) tools.
 
