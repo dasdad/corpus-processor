@@ -16,14 +16,17 @@ module CorpusProcessor::Parsers
     /ix
 
     def initialize(categories = CorpusProcessor::DEFAULT_CATEGORIES[:input],
-                   traverser  = CorpusProcessor::Traverser.new)
+                   traverser  = CorpusProcessor::Traverser.new,
+                   tokenizer  = CorpusProcessor::Tokenizer.new)
       @categories = categories
       @traverser  = traverser
+      @tokenizer  = tokenizer
     end
 
     def parse(corpus)
       [].tap { |tokens|
-        @traverser.traverse(join_lines(corpus), CATEGORY_REGEX) do |match|
+        @traverser.traverse(@tokenizer.join_lines(corpus),
+                            CATEGORY_REGEX) do |match|
           text_to_tokenize, category = case match
                                        when String
                                          [match, nil]
@@ -33,25 +36,9 @@ module CorpusProcessor::Parsers
                                            extract_category(match[:categories])
                                          ]
                                        end
-          tokens.push(*tokenize(text_to_tokenize, category))
+          tokens.push(*@tokenizer.tokenize(text_to_tokenize, category))
         end
       }
-    end
-
-    def strip_tags(text)
-      text.gsub(/<.*?>/, " ").strip
-    end
-
-    def tokenize(text, category = nil)
-      strip_tags(text)
-        .gsub(/[[:punct:]]/, "")
-        .strip
-        .split(/\s+/)
-        .map { |word| CorpusProcessor::Token.new(word, category) }
-    end
-
-    def join_lines(text)
-      text.gsub(/\s+/, " ").strip
     end
 
     def extract_category(categories)
