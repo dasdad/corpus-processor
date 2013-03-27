@@ -1,6 +1,8 @@
 Corpus Processor
 ================
 
+![Corpus Processor](http://badge.fury.io/rb/corpus-processor)
+
 Tool to work with [Corpus Linguistics](http://en.wikipedia.org/wiki/Corpus_linguistics). Corpus Processor converts _corpora_ between different formats for use in Natural Language Processing (NLP) tools.
 
 The first purpose of Corpus Processor and its current only feature is to transform _corpora_ found in [Linguateca](http://www.linguateca.pt) into the format used for training in [Stanford NER](http://nlp.stanford.edu/software/CRF-NER.shtml).
@@ -21,7 +23,11 @@ $ gem install corpus_processor
 Usage
 -----
 
-Run `corpus_processor help`.
+Convert corpus from HAREM format to Stanford-NER format:
+
+```bash
+$ corpus-processor process [INPUT_FILE [OUTPUT_FILE]]
+```
 
 Contributing
 ------------
