@@ -29,6 +29,13 @@ Convert corpus from HAREM format to Stanford-NER format:
 $ corpus-processor process [INPUT_FILE [OUTPUT_FILE]]
 ```
 
+Results
+-------
+
+For an example of converting one corpus with Corpus Processor, refer to this [gist](https://gist.github.com/leafac/5259008).
+
+The corpus is from [Linguateca](http://www.linguateca.pt/HAREM/) and the training used [Stanford NER](http://nlp.stanford.edu/software/CRF-NER.shtml).
+
 Contributing
 ------------
 
