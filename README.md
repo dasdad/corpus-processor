@@ -3,7 +3,7 @@ Corpus Processor
 
 [![Gem Version](https://fury-badge.herokuapp.com/rb/corpus-processor.png)](http://badge.fury.io/rb/corpus-processor)
 
-* [Versão em português](#versao-em-portugues)
+* [Versão em português](#versao-em-portugus)
 * [English version](#english-version)
 
 Versão em português
