@@ -125,6 +125,10 @@ Changelog
 * [LâMPADA 2.0 / Classic HAREM 2.0 Golden Collection](http://www.linguateca.pt/HAREM/) Parser.
 * [Stanford NER](http://nlp.stanford.edu/software/CRF-NER.shtml) Generator.
 
+### 0.0.2
+
+* Renamed Harem to LâMPADA, as asked by Linguateca's team.
+
 License
 -------
 
