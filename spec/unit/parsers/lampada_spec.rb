@@ -1,10 +1,10 @@
 require "spec_helper"
 
-describe CorpusProcessor::Parsers::Harem do
-  subject(:harem) { CorpusProcessor::Parsers::Harem.new }
+describe CorpusProcessor::Parsers::Lampada do
+  subject(:lampada) { CorpusProcessor::Parsers::Lampada.new }
 
   describe "#parse" do
-    subject { harem.parse(corpus) }
+    subject { lampada.parse(corpus) }
 
     context "default categories" do
       context "empty corpus" do
@@ -193,8 +193,8 @@ CORPUS
     end
 
     context "user-defined categories" do
-      let(:harem) {
-        CorpusProcessor::Parsers::Harem.new({
+      let(:lampada) {
+        CorpusProcessor::Parsers::Lampada.new({
           "FRUTA" => :fruit,
           "LIVRO" => :book,
         })
@@ -240,7 +240,7 @@ CORPUS
   end
 
   describe "#extract_category" do
-    subject { harem.extract_category(categories) }
+    subject { lampada.extract_category(categories) }
 
     context "empty categories" do
       let(:categories) { "" }
