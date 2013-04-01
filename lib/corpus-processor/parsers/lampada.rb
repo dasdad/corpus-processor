@@ -1,5 +1,5 @@
 module CorpusProcessor::Parsers
-  class Harem
+  class Lampada
 
     CATEGORY_REGEX = /
       (?<any_text>           .*?                       ){0}

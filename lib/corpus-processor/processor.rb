@@ -1,5 +1,5 @@
 class CorpusProcessor::Processor
-  def initialize(parser    = CorpusProcessor::Parsers::Harem.new,
+  def initialize(parser    = CorpusProcessor::Parsers::Lampada.new,
                  generator = CorpusProcessor::Generators::StanfordNer.new)
     @parser    = parser
     @generator = generator

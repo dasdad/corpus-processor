@@ -1,1 +1,1 @@
-require "corpus-processor/parsers/harem"
+require "corpus-processor/parsers/lampada"
