@@ -57,14 +57,17 @@ module CorpusProcessor::Parsers
       end
 
       def process_em em
-        self.category = extract em.attributes['CATEG'].text
+        categ_attribute = em.attributes['CATEG']
+        unless categ_attribute.nil?
+          self.category = extract categ_attribute.text
+        end
         tokens = process_nodes em.children
         self.category = nil
         tokens
       end
 
       def process_alt alt
-        process_nodes em.children
+        process_nodes alt.children
       end
 
       def extract categories
