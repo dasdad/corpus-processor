@@ -158,16 +158,18 @@ CORPUS
       por
       <EM ID="H2-dftre765-10" CATEG="PESSOA" TIPO="INDIVIDUAL" COREL="H2-dftre765-9" TIPOREL="natural_de">John Gutenberg</EM>
       <EM ID="H2-dftre765-20" CATEG="ORGANIZACAO" TIPO="INSTITUICAO" COMENT="2/3">Inquisição</EM>
-      e a censura 
+      e a censura
       </P>
   </DOC>
 </colHAREM>
 CORPUS
         }
 
-        it { should == [
+        it 'finds all of them' do
+          should == [
             CorpusProcessor::Token.new('A'),
             CorpusProcessor::Token.new('imprensa'),
+            CorpusProcessor::Token.new(','),
             CorpusProcessor::Token.new('inventada'),
             CorpusProcessor::Token.new('na'),
             CorpusProcessor::Token.new('Alemanha', :location),
@@ -178,30 +180,9 @@ CORPUS
             CorpusProcessor::Token.new('e'),
             CorpusProcessor::Token.new('a'),
             CorpusProcessor::Token.new('censura'),
+            CorpusProcessor::Token.new('.'),
           ]
-        }
-      end
-
-      context 'spaces after ponctuation' do
-        let(:corpus) {
-<<-CORPUS.encode('ISO-8859-1')
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE colHAREM>
-<colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
-  <DOC DOCID="H2-dftre765">
-      <EM ID="H2-dftre765-1" CATEG="ABSTRACCAO|ACONTECIMENTO" TIPO="IDEIA|EFEMERIDE">Reforma Protestante</EM>
-      . No
-  </DOC>
-</colHAREM>
-CORPUS
-        }
-
-        it { should == [
-            CorpusProcessor::Token.new('Reforma'),
-            CorpusProcessor::Token.new('Protestante'),
-            CorpusProcessor::Token.new('No'),
-          ]
-        }
+        end
       end
     end
 
@@ -226,16 +207,18 @@ CORPUS
       por
       <EM ID="H2-dftre765-10" CATEG="LIVRO" TIPO="INDIVIDUAL" COREL="H2-dftre765-9" TIPOREL="natural_de">Harry Potter</EM>
       <EM ID="H2-dftre765-20" CATEG="ORGANIZACAO" TIPO="INSTITUICAO" COMENT="2/3">Inquisição</EM>
-      e a censura 
+      e a censura
       </P>
   </DOC>
 </colHAREM>
 CORPUS
         }
 
-        it { should == [
+        it 'finds all of them' do
+          should == [
             CorpusProcessor::Token.new('A'),
             CorpusProcessor::Token.new('imprensa'),
+            CorpusProcessor::Token.new(','),
             CorpusProcessor::Token.new('inventada'),
             CorpusProcessor::Token.new('na'),
             CorpusProcessor::Token.new('Banana', :fruit),
@@ -246,8 +229,9 @@ CORPUS
             CorpusProcessor::Token.new('e'),
             CorpusProcessor::Token.new('a'),
             CorpusProcessor::Token.new('censura'),
+            CorpusProcessor::Token.new('.'),
           ]
-        }
+        end
       end
     end
   end

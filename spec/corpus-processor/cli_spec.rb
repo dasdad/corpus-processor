@@ -97,9 +97,14 @@ de	O
 Avignon	O
 ,	O
 o	O
+.	O
 OUTPUT
+
+      expect(output_file).to receive(:close)
     end
 
-    it('processes the corpus') { subject }
+    it 'processes the corpus' do
+      subject
+    end
   end
 end
