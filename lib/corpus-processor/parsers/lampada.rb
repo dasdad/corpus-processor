@@ -67,7 +67,18 @@ module CorpusProcessor::Parsers
       end
 
       def process_alt alt
-        process_nodes alt.children
+        alternatives  = alt.inner_html.split('|')
+        fake_xmls     = alternatives.map { |alternative|
+          Nokogiri::XML "<document>#{ alternative }</document>"
+        }
+        alternatives_tokens = fake_xmls.map { |fake_xml|
+          process_nodes fake_xml.children
+        }
+        alternatives_tokens.max_by { |alternative_tokens|
+          alternative_tokens.count { |alternative_token|
+            ! alternative_token.category.nil?
+          }
+        }
       end
 
       def extract categories

@@ -184,14 +184,107 @@ CORPUS
           ])
         end
       end
+
+      context 'alternative tags' do
+        context 'all options are unknown categories' do
+          let(:corpus) {
+  <<-CORPUS.encode('ISO-8859-1')
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE colHAREM>
+<colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
+  <DOC DOCID="H2-dftre765">
+      <P>
+      <ALT> <EM ID="H2-dftre765-12aa" CATEG="OBRA" TIPO="REPRODUZIDA">95 Teses de Martinho Lutero</EM> |
+    <EM ID="H2-dftre765-12" CATEG="OBRA" TIPO="REPRODUZIDA" SUBTIPO="LIVRO">95 Teses</EM>
+    de
+    <EM ID="H2-dftre765-13" CATEG="SER-HUMANO" TIPO="INDIVIDUAL" COREL="H2-dftre765-12 H2-dftre765-9 H2-dftre765-1" TIPOREL="autor_de natural_de PESSOA**participante_em**H2-dftre765-1**ACONTECIMENTO">Martinho Lutero</EM></ALT>
+      </P>
+  </DOC>
+</colHAREM>
+CORPUS
+          }
+
+          it 'rejects all of them' do
+            expect(subject).to eq([
+              CorpusProcessor::Token.new('95'),
+              CorpusProcessor::Token.new('Teses'),
+              CorpusProcessor::Token.new('de'),
+              CorpusProcessor::Token.new('Martinho'),
+              CorpusProcessor::Token.new('Lutero'),
+              CorpusProcessor::Token.new('.'),
+            ])
+          end
+        end
+
+        context 'one of the options has known categories' do
+          let(:corpus) {
+  <<-CORPUS.encode('ISO-8859-1')
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE colHAREM>
+<colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
+  <DOC DOCID="H2-dftre765">
+      <P>
+      <ALT> <EM ID="H2-dftre765-12aa" CATEG="OBRA" TIPO="REPRODUZIDA">95 Teses de Martinho Lutero</EM> |
+    <EM ID="H2-dftre765-12" CATEG="OBRA" TIPO="REPRODUZIDA" SUBTIPO="LIVRO">95 Teses</EM>
+    de
+    <EM ID="H2-dftre765-13" CATEG="PESSOA" TIPO="INDIVIDUAL" COREL="H2-dftre765-12 H2-dftre765-9 H2-dftre765-1" TIPOREL="autor_de natural_de PESSOA**participante_em**H2-dftre765-1**ACONTECIMENTO">Martinho Lutero</EM></ALT>
+      </P>
+  </DOC>
+</colHAREM>
+CORPUS
+          }
+
+          it 'prefers that option' do
+            expect(subject).to eq([
+              CorpusProcessor::Token.new('95'),
+              CorpusProcessor::Token.new('Teses'),
+              CorpusProcessor::Token.new('de'),
+              CorpusProcessor::Token.new('Martinho', :person),
+              CorpusProcessor::Token.new('Lutero', :person),
+              CorpusProcessor::Token.new('.'),
+            ])
+          end
+        end
+
+        context 'more than one option have known categories' do
+          let(:corpus) {
+  <<-CORPUS.encode('ISO-8859-1')
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE colHAREM>
+<colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
+  <DOC DOCID="H2-dftre765">
+      <P>
+      <ALT> <EM ID="H2-dftre765-12aa" CATEG="LOCAL" TIPO="REPRODUZIDA">95 Teses de Martinho Lutero</EM> |
+    <EM ID="H2-dftre765-12" CATEG="OBRA" TIPO="REPRODUZIDA" SUBTIPO="LIVRO">95 Teses</EM>
+    de
+    <EM ID="H2-dftre765-13" CATEG="PESSOA" TIPO="INDIVIDUAL" COREL="H2-dftre765-12 H2-dftre765-9 H2-dftre765-1" TIPOREL="autor_de natural_de PESSOA**participante_em**H2-dftre765-1**ACONTECIMENTO">Martinho Lutero</EM></ALT>
+      </P>
+  </DOC>
+</colHAREM>
+CORPUS
+          }
+
+          it 'prefers the option that covers most text with known ' \
+                                                              'categories' do
+            expect(subject).to eq([
+              CorpusProcessor::Token.new('95', :location),
+              CorpusProcessor::Token.new('Teses', :location),
+              CorpusProcessor::Token.new('de', :location),
+              CorpusProcessor::Token.new('Martinho', :location),
+              CorpusProcessor::Token.new('Lutero', :location),
+              CorpusProcessor::Token.new('.'),
+            ])
+          end
+        end
+      end
     end
 
     context 'user-defined categories' do
       let(:lampada) {
-        CorpusProcessor::Parsers::Lampada.new({
+        CorpusProcessor::Parsers::Lampada.new(
           'FRUTA' => :fruit,
           'LIVRO' => :book,
-        })
+        )
       }
 
       context 'multiple entities' do
