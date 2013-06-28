@@ -11,7 +11,7 @@ describe CorpusProcessor::Parsers::Lampada do
         let(:corpus) { '' }
 
         it 'returns an empty list' do
-          should == []
+          expect(subject).to eq([])
         end
       end
 
@@ -24,7 +24,7 @@ CORPUS
         }
 
         it 'returns an empty list' do
-          should == []
+          expect(subject).to eq([])
         end
       end
 
@@ -42,14 +42,14 @@ CORPUS
         }
 
         it 'tokenizes the phrase' do
-          should == [
+          expect(subject).to eq([
             CorpusProcessor::Token.new('Fatores'),
             CorpusProcessor::Token.new('Demográficos'),
             CorpusProcessor::Token.new('e'),
             CorpusProcessor::Token.new('Econômicos'),
             CorpusProcessor::Token.new('Subjacentes'),
             CorpusProcessor::Token.new('.'),
-          ]
+          ])
         end
       end
 
@@ -68,7 +68,7 @@ CORPUS
         }
 
         it 'tokenizes the phrase and appends periods where needed' do
-          should == [
+          expect(subject).to eq([
             CorpusProcessor::Token.new('Fatores'),
             CorpusProcessor::Token.new('Demográficos'),
             CorpusProcessor::Token.new('e'),
@@ -81,7 +81,7 @@ CORPUS
             CorpusProcessor::Token.new('Econômicos'),
             CorpusProcessor::Token.new('Subjacentes'),
             CorpusProcessor::Token.new('.'),
-          ]
+          ])
         end
       end
 
@@ -99,14 +99,14 @@ CORPUS
         }
 
         it 'ignores that entity' do
-          should == [
+          expect(subject).to eq([
             CorpusProcessor::Token.new('Nos'),
             CorpusProcessor::Token.new('finais'),
             CorpusProcessor::Token.new('da'),
             CorpusProcessor::Token.new('Idade'),
             CorpusProcessor::Token.new('Média'),
             CorpusProcessor::Token.new('.'),
-          ]
+          ])
         end
       end
 
@@ -126,7 +126,7 @@ CORPUS
         }
 
         it 'finds that entity' do
-          should == [
+          expect(subject).to eq([
             CorpusProcessor::Token.new('Foram'),
             CorpusProcessor::Token.new('igualmente'),
             CorpusProcessor::Token.new('determinantes'),
@@ -141,7 +141,7 @@ CORPUS
             CorpusProcessor::Token.new('em'),
             CorpusProcessor::Token.new('Portugal', :location),
             CorpusProcessor::Token.new('.'),
-          ]
+          ])
         end
       end
 
@@ -166,7 +166,7 @@ CORPUS
         }
 
         it 'finds all of them' do
-          should == [
+          expect(subject).to eq([
             CorpusProcessor::Token.new('A'),
             CorpusProcessor::Token.new('imprensa'),
             CorpusProcessor::Token.new(','),
@@ -181,7 +181,7 @@ CORPUS
             CorpusProcessor::Token.new('a'),
             CorpusProcessor::Token.new('censura'),
             CorpusProcessor::Token.new('.'),
-          ]
+          ])
         end
       end
     end
@@ -215,7 +215,7 @@ CORPUS
         }
 
         it 'finds all of them' do
-          should == [
+          expect(subject).to eq([
             CorpusProcessor::Token.new('A'),
             CorpusProcessor::Token.new('imprensa'),
             CorpusProcessor::Token.new(','),
@@ -230,7 +230,7 @@ CORPUS
             CorpusProcessor::Token.new('a'),
             CorpusProcessor::Token.new('censura'),
             CorpusProcessor::Token.new('.'),
-          ]
+          ])
         end
       end
     end

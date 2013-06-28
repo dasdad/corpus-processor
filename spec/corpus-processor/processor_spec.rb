@@ -23,15 +23,12 @@ CORPUS
     let(:generator) { double :generator }
 
     it 'uses parser and generator to process corpus' do
-      parser.should_receive(:parse)
-            .with(corpus)
-            .and_return(tokens)
+      expect(parser).to receive(:parse).with(corpus).and_return(tokens)
 
-      generator.should_receive(:generate)
-            .with(tokens)
-            .and_return(processed_corpus)
+      expect(generator).to receive(:generate).with(tokens)
+                                             .and_return(processed_corpus)
 
-      subject.should == processed_corpus
+      expect(subject).to eq(processed_corpus)
     end
   end
 end

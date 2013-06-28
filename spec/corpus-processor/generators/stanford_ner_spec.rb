@@ -10,7 +10,7 @@ describe CorpusProcessor::Generators::StanfordNer do
       let(:tokens) { [] }
 
       it 'returns a single new line' do
-        should == "\n"
+        expect(subject).to eq("\n")
       end
     end
 
@@ -18,7 +18,7 @@ describe CorpusProcessor::Generators::StanfordNer do
       let(:tokens) { [CorpusProcessor::Token.new('banana')] }
 
       it 'returns that token' do
-        should == "banana\tO\n"
+        expect(subject).to eq("banana\tO\n")
       end
     end
 
@@ -29,7 +29,7 @@ describe CorpusProcessor::Generators::StanfordNer do
       ] }
 
       it 'returns both tokens in separate lines' do
-        should == "good\tO\nbanana\tO\n"
+        expect(subject).to eq("good\tO\nbanana\tO\n")
       end
     end
 
@@ -37,7 +37,7 @@ describe CorpusProcessor::Generators::StanfordNer do
       let(:tokens) { [CorpusProcessor::Token.new('Leandro', :person)] }
 
       it 'returns that token with right category' do
-        should == "Leandro\tPERSON\n"
+        expect(subject).to eq("Leandro\tPERSON\n")
       end
     end
 
@@ -49,7 +49,7 @@ describe CorpusProcessor::Generators::StanfordNer do
       let(:tokens) { [CorpusProcessor::Token.new('Nanica', :banana)] }
 
       it 'uses those categories' do
-        should == "Nanica\tBANANA\n"
+        expect(subject).to eq("Nanica\tBANANA\n")
       end
     end
   end
