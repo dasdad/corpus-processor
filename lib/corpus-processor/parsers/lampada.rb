@@ -33,7 +33,7 @@ module CorpusProcessor::Parsers
       end
 
       def process_text text
-        text.gsub(PUNCT, ' \0')
+        text.gsub(PUNCT, ' \0 ')
             .strip
             .split(SPACES)
             .map { |word|
