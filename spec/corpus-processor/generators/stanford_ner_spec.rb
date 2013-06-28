@@ -9,13 +9,17 @@ describe CorpusProcessor::Generators::StanfordNer do
     context 'no tokens' do
       let(:tokens) { [] }
 
-      it { should == "\n" }
+      it 'returns a single new line' do
+        should == "\n"
+      end
     end
 
     context 'one token' do
       let(:tokens) { [CorpusProcessor::Token.new('banana')] }
 
-      it { should == "banana\tO\n" }
+      it 'returns that token' do
+        should == "banana\tO\n"
+      end
     end
 
     context 'two tokens' do
@@ -24,23 +28,29 @@ describe CorpusProcessor::Generators::StanfordNer do
         CorpusProcessor::Token.new('banana'),
       ] }
 
-      it { should == "good\tO\nbanana\tO\n" }
+      it 'returns both tokens in separate lines' do
+        should == "good\tO\nbanana\tO\n"
+      end
     end
 
     context 'with category' do
       let(:tokens) { [CorpusProcessor::Token.new('Leandro', :person)] }
 
-      it { should == "Leandro\tPERSON\n" }
+      it 'returns that token with right category' do
+        should == "Leandro\tPERSON\n"
+      end
     end
 
     context 'with non-default categories' do
-      let(:stanford_ner) { CorpusProcessor::Generators::StanfordNer.new(
-        banana: 'BANANA'
-      ) }
+      let(:stanford_ner) {
+        CorpusProcessor::Generators::StanfordNer.new(banana: 'BANANA')
+      }
 
       let(:tokens) { [CorpusProcessor::Token.new('Nanica', :banana)] }
 
-      it { should == "Nanica\tBANANA\n" }
+      it 'uses those categories' do
+        should == "Nanica\tBANANA\n"
+      end
     end
   end
 end

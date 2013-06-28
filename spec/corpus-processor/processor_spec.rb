@@ -22,7 +22,7 @@ CORPUS
     let(:parser)    { double :parser    }
     let(:generator) { double :generator }
 
-    specify {
+    it 'uses parser and generator to process corpus' do
       parser.should_receive(:parse)
             .with(corpus)
             .and_return(tokens)
@@ -32,6 +32,6 @@ CORPUS
             .and_return(processed_corpus)
 
       subject.should == processed_corpus
-    }
+    end
   end
 end
