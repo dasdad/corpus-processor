@@ -1,1 +1,1 @@
-require "corpus-processor/generators/stanford_ner"
+require 'corpus-processor/generators/stanford_ner'

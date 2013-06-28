@@ -1,13 +1,13 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe CorpusProcessor::Traverser do
   subject(:traverser) { CorpusProcessor::Traverser.new }
 
-  describe "#traverse" do
+  describe '#traverse' do
     subject { traverser.traverse(text, regexp) }
 
-    context "empty text" do
-      let(:text)   { "" }
+    context 'empty text' do
+      let(:text)   { '' }
       let(:regexp) { // }
 
       specify {
@@ -17,51 +17,51 @@ describe CorpusProcessor::Traverser do
       }
     end
 
-    context "simple text" do
-      let(:text)   { "abc" }
+    context 'simple text' do
+      let(:text)   { 'abc' }
       let(:regexp) { /b/ }
 
       specify {
         expect { |mock_block|
           traverser.traverse(text, regexp, &mock_block)
-        }.to yield_successive_args "a", text.match(regexp), "c"
+        }.to yield_successive_args 'a', text.match(regexp), 'c'
       }
     end
 
-    context "two matches" do
-      let(:text)   { "abcbd" }
+    context 'two matches' do
+      let(:text)   { 'abcbd' }
       let(:regexp) { /b/ }
 
       specify {
         expect { |mock_block|
           traverser.traverse(text, regexp, &mock_block)
-        }.to yield_successive_args "a",
+        }.to yield_successive_args 'a',
                                    text.match(regexp),
-                                   "c",
+                                   'c',
                                    text[2..-1].match(regexp),
-                                   "d"
+                                   'd'
       }
     end
 
-    context "match in beginning" do
-      let(:text)   { "bc" }
+    context 'match in beginning' do
+      let(:text)   { 'bc' }
       let(:regexp) { /b/ }
 
       specify {
         expect { |mock_block|
           traverser.traverse(text, regexp, &mock_block)
-        }.to yield_successive_args text.match(regexp), "c"
+        }.to yield_successive_args text.match(regexp), 'c'
       }
     end
 
-    context "match in ending" do
-      let(:text)   { "bc" }
+    context 'match in ending' do
+      let(:text)   { 'bc' }
       let(:regexp) { /c/ }
 
       specify {
         expect { |mock_block|
           traverser.traverse(text, regexp, &mock_block)
-        }.to yield_successive_args "b", text.match(regexp)
+        }.to yield_successive_args 'b', text.match(regexp)
       }
     end
   end

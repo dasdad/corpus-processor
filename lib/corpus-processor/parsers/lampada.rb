@@ -43,7 +43,7 @@ module CorpusProcessor::Parsers
 
     def extract_category(categories)
       categories
-        .split("|")
+        .split('|')
         .map { |category_string| @categories[category_string] }
         .compact
         .first

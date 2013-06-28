@@ -1,16 +1,16 @@
-require "spec_helper"
+require 'spec_helper'
 
-require "corpus-processor/cli"
+require 'corpus-processor/cli'
 
 describe CorpusProcessor::Cli do
   include FakeFS::SpecHelpers
   subject(:cli) { CorpusProcessor::Cli.new }
 
-  let(:input_file)  { "input_file"  }
-  let(:output_file) { "output_file" }
+  let(:input_file)  { 'input_file'  }
+  let(:output_file) { 'output_file' }
 
   before do
-    File.open(input_file, "w") { |file|
+    File.open(input_file, 'w') { |file|
       file.write <<-INPUT
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
@@ -33,7 +33,7 @@ INPUT
     }
   end
 
-  describe "#process" do
+  describe '#process' do
     before do
       cli.process(input_file, output_file)
     end

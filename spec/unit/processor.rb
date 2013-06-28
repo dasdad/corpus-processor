@@ -1,12 +1,12 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe CorpusProcessor::Processor do
   subject(:processor) { CorpusProcessor::Processor.new(parser, generator) }
 
-  describe "#process" do
+  describe '#process' do
     subject { processor.process(corpus) }
 
-    let(:corpus) { "Some corpus" }
+    let(:corpus) { 'Some corpus' }
     let(:processed_corpus) {
 <<-CORPUS
 Some	O
@@ -15,8 +15,8 @@ CORPUS
     }
     let(:tokens) {
       [
-        CorpusProcessor::Token.new("Some"),
-        CorpusProcessor::Token.new("corpus"),
+        CorpusProcessor::Token.new('Some'),
+        CorpusProcessor::Token.new('corpus'),
       ]
     }
     let(:parser)    { double :parser    }

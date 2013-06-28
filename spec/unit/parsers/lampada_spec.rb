@@ -1,19 +1,19 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe CorpusProcessor::Parsers::Lampada do
   subject(:lampada) { CorpusProcessor::Parsers::Lampada.new }
 
-  describe "#parse" do
+  describe '#parse' do
     subject { lampada.parse(corpus) }
 
-    context "default categories" do
-      context "empty corpus" do
-        let(:corpus) { "" }
+    context 'default categories' do
+      context 'empty corpus' do
+        let(:corpus) { '' }
 
         it { should == [] }
       end
 
-      context "doctype" do
+      context 'doctype' do
         let(:corpus) {
 <<-CORPUS
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -24,7 +24,7 @@ CORPUS
         it { should == [] }
       end
 
-      context "simple phrase" do
+      context 'simple phrase' do
         let(:corpus) {
 <<-CORPUS
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -38,16 +38,16 @@ CORPUS
         }
 
         it { should == [
-            CorpusProcessor::Token.new("Fatores"),
-            CorpusProcessor::Token.new("Demográficos"),
-            CorpusProcessor::Token.new("e"),
-            CorpusProcessor::Token.new("Econômicos"),
-            CorpusProcessor::Token.new("Subjacentes"),
+            CorpusProcessor::Token.new('Fatores'),
+            CorpusProcessor::Token.new('Demográficos'),
+            CorpusProcessor::Token.new('e'),
+            CorpusProcessor::Token.new('Econômicos'),
+            CorpusProcessor::Token.new('Subjacentes'),
           ]
         }
       end
 
-      context "two simple phrases" do
+      context 'two simple phrases' do
         let(:corpus) {
 <<-CORPUS
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -62,21 +62,21 @@ CORPUS
         }
 
         it { should == [
-            CorpusProcessor::Token.new("Fatores"),
-            CorpusProcessor::Token.new("Demográficos"),
-            CorpusProcessor::Token.new("e"),
-            CorpusProcessor::Token.new("Econômicos"),
-            CorpusProcessor::Token.new("Subjacentes"),
-            CorpusProcessor::Token.new("Fatores"),
-            CorpusProcessor::Token.new("Demográficos"),
-            CorpusProcessor::Token.new("e"),
-            CorpusProcessor::Token.new("Econômicos"),
-            CorpusProcessor::Token.new("Subjacentes"),
+            CorpusProcessor::Token.new('Fatores'),
+            CorpusProcessor::Token.new('Demográficos'),
+            CorpusProcessor::Token.new('e'),
+            CorpusProcessor::Token.new('Econômicos'),
+            CorpusProcessor::Token.new('Subjacentes'),
+            CorpusProcessor::Token.new('Fatores'),
+            CorpusProcessor::Token.new('Demográficos'),
+            CorpusProcessor::Token.new('e'),
+            CorpusProcessor::Token.new('Econômicos'),
+            CorpusProcessor::Token.new('Subjacentes'),
           ]
         }
       end
 
-      context "useless entity" do
+      context 'useless entity' do
         let(:corpus) {
 <<-CORPUS
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -90,16 +90,16 @@ CORPUS
         }
 
         it { should == [
-            CorpusProcessor::Token.new("Nos"),
-            CorpusProcessor::Token.new("finais"),
-            CorpusProcessor::Token.new("da"),
-            CorpusProcessor::Token.new("Idade"),
-            CorpusProcessor::Token.new("Média"),
+            CorpusProcessor::Token.new('Nos'),
+            CorpusProcessor::Token.new('finais'),
+            CorpusProcessor::Token.new('da'),
+            CorpusProcessor::Token.new('Idade'),
+            CorpusProcessor::Token.new('Média'),
           ]
         }
       end
 
-      context "one entity" do
+      context 'one entity' do
         let(:corpus) {
 <<-CORPUS
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -115,24 +115,24 @@ CORPUS
         }
 
         it { should == [
-            CorpusProcessor::Token.new("Foram"),
-            CorpusProcessor::Token.new("igualmente"),
-            CorpusProcessor::Token.new("determinantes"),
-            CorpusProcessor::Token.new("para"),
-            CorpusProcessor::Token.new("evitar"),
-            CorpusProcessor::Token.new("que"),
-            CorpusProcessor::Token.new("as"),
-            CorpusProcessor::Token.new("ideias"),
-            CorpusProcessor::Token.new("reformadoras"),
-            CorpusProcessor::Token.new("encontrassem"),
-            CorpusProcessor::Token.new("divulgação"),
-            CorpusProcessor::Token.new("em"),
-            CorpusProcessor::Token.new("Portugal", :location),
+            CorpusProcessor::Token.new('Foram'),
+            CorpusProcessor::Token.new('igualmente'),
+            CorpusProcessor::Token.new('determinantes'),
+            CorpusProcessor::Token.new('para'),
+            CorpusProcessor::Token.new('evitar'),
+            CorpusProcessor::Token.new('que'),
+            CorpusProcessor::Token.new('as'),
+            CorpusProcessor::Token.new('ideias'),
+            CorpusProcessor::Token.new('reformadoras'),
+            CorpusProcessor::Token.new('encontrassem'),
+            CorpusProcessor::Token.new('divulgação'),
+            CorpusProcessor::Token.new('em'),
+            CorpusProcessor::Token.new('Portugal', :location),
           ]
         }
       end
 
-      context "multiple entities" do
+      context 'multiple entities' do
         let(:corpus) {
 <<-CORPUS
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -153,23 +153,23 @@ CORPUS
         }
 
         it { should == [
-            CorpusProcessor::Token.new("A"),
-            CorpusProcessor::Token.new("imprensa"),
-            CorpusProcessor::Token.new("inventada"),
-            CorpusProcessor::Token.new("na"),
-            CorpusProcessor::Token.new("Alemanha", :location),
-            CorpusProcessor::Token.new("por"),
-            CorpusProcessor::Token.new("John", :person),
-            CorpusProcessor::Token.new("Gutenberg", :person),
-            CorpusProcessor::Token.new("Inquisição", :organization),
-            CorpusProcessor::Token.new("e"),
-            CorpusProcessor::Token.new("a"),
-            CorpusProcessor::Token.new("censura"),
+            CorpusProcessor::Token.new('A'),
+            CorpusProcessor::Token.new('imprensa'),
+            CorpusProcessor::Token.new('inventada'),
+            CorpusProcessor::Token.new('na'),
+            CorpusProcessor::Token.new('Alemanha', :location),
+            CorpusProcessor::Token.new('por'),
+            CorpusProcessor::Token.new('John', :person),
+            CorpusProcessor::Token.new('Gutenberg', :person),
+            CorpusProcessor::Token.new('Inquisição', :organization),
+            CorpusProcessor::Token.new('e'),
+            CorpusProcessor::Token.new('a'),
+            CorpusProcessor::Token.new('censura'),
           ]
         }
       end
 
-      context "spaces after ponctuation" do
+      context 'spaces after ponctuation' do
         let(:corpus) {
 <<-CORPUS
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -184,23 +184,23 @@ CORPUS
         }
 
         it { should == [
-            CorpusProcessor::Token.new("Reforma"),
-            CorpusProcessor::Token.new("Protestante"),
-            CorpusProcessor::Token.new("No"),
+            CorpusProcessor::Token.new('Reforma'),
+            CorpusProcessor::Token.new('Protestante'),
+            CorpusProcessor::Token.new('No'),
           ]
         }
       end
     end
 
-    context "user-defined categories" do
+    context 'user-defined categories' do
       let(:lampada) {
         CorpusProcessor::Parsers::Lampada.new({
-          "FRUTA" => :fruit,
-          "LIVRO" => :book,
+          'FRUTA' => :fruit,
+          'LIVRO' => :book,
         })
       }
 
-      context "multiple entities" do
+      context 'multiple entities' do
         let(:corpus) {
 <<-CORPUS
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -221,47 +221,47 @@ CORPUS
         }
 
         it { should == [
-            CorpusProcessor::Token.new("A"),
-            CorpusProcessor::Token.new("imprensa"),
-            CorpusProcessor::Token.new("inventada"),
-            CorpusProcessor::Token.new("na"),
-            CorpusProcessor::Token.new("Banana", :fruit),
-            CorpusProcessor::Token.new("por"),
-            CorpusProcessor::Token.new("Harry", :book),
-            CorpusProcessor::Token.new("Potter", :book),
-            CorpusProcessor::Token.new("Inquisição"),
-            CorpusProcessor::Token.new("e"),
-            CorpusProcessor::Token.new("a"),
-            CorpusProcessor::Token.new("censura"),
+            CorpusProcessor::Token.new('A'),
+            CorpusProcessor::Token.new('imprensa'),
+            CorpusProcessor::Token.new('inventada'),
+            CorpusProcessor::Token.new('na'),
+            CorpusProcessor::Token.new('Banana', :fruit),
+            CorpusProcessor::Token.new('por'),
+            CorpusProcessor::Token.new('Harry', :book),
+            CorpusProcessor::Token.new('Potter', :book),
+            CorpusProcessor::Token.new('Inquisição'),
+            CorpusProcessor::Token.new('e'),
+            CorpusProcessor::Token.new('a'),
+            CorpusProcessor::Token.new('censura'),
           ]
         }
       end
     end
   end
 
-  describe "#extract_category" do
+  describe '#extract_category' do
     subject { lampada.extract_category(categories) }
 
-    context "empty categories" do
-      let(:categories) { "" }
+    context 'empty categories' do
+      let(:categories) { '' }
 
       it { should == nil }
     end
 
-    context "one category" do
-      let(:categories) { "PESSOA" }
+    context 'one category' do
+      let(:categories) { 'PESSOA' }
 
       it { should == :person }
     end
 
-    context "two categories" do
-      let(:categories) { "OUTRA|ORGANIZACAO" }
+    context 'two categories' do
+      let(:categories) { 'OUTRA|ORGANIZACAO' }
 
       it { should == :organization }
     end
 
-    context "ambiguidade" do
-      let(:categories) { "PESSOA|ORGANIZACAO" }
+    context 'ambiguidade' do
+      let(:categories) { 'PESSOA|ORGANIZACAO' }
 
       it { should == :person }
     end

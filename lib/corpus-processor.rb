@@ -1,8 +1,8 @@
-require "corpus-processor/version"
-require "corpus-processor/token"
-require "corpus-processor/default_categories"
-require "corpus-processor/traverser"
-require "corpus-processor/tokenizer"
-require "corpus-processor/parsers"
-require "corpus-processor/generators"
-require "corpus-processor/processor"
+require 'corpus-processor/version'
+require 'corpus-processor/token'
+require 'corpus-processor/default_categories'
+require 'corpus-processor/traverser'
+require 'corpus-processor/tokenizer'
+require 'corpus-processor/parsers'
+require 'corpus-processor/generators'
+require 'corpus-processor/processor'

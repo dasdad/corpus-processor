@@ -1,1 +1,1 @@
-require "corpus-processor/parsers/lampada"
+require 'corpus-processor/parsers/lampada'

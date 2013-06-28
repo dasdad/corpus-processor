@@ -6,7 +6,7 @@ class CorpusProcessor::Traverser
       match = remaining_search.match(regexp)
       if match.nil?
         block.call remaining_search unless remaining_search.empty?
-        remaining_search = ""
+        remaining_search = ''
       else
         before           = remaining_search[0...match.begin(0)]
         remaining_search = remaining_search[match.end(0)..-1]

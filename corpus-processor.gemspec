@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = Gem::Requirement.new('>= 2.0.0')
 
   spec.add_dependency 'thor'
+  spec.add_dependency 'nokogiri'
 
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rspec'
