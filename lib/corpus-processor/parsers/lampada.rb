@@ -67,7 +67,7 @@ module CorpusProcessor::Parsers
       end
 
       def process_alt alt
-        alternatives  = alt.inner_html.split('|')
+        alternatives  = alt.inner_html.encode('UTF-8').split('|')
         fake_xmls     = alternatives.map { |alternative|
           Nokogiri::XML "<document>#{ alternative }</document>"
         }
