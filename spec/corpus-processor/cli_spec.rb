@@ -34,70 +34,70 @@ describe CorpusProcessor::Cli do
 INPUT
 
       expect(output_file).to receive(:puts).with(<<-OUTPUT)
-Fatores	O
-Demográficos	O
-e	O
-Econômicos	O
-Subjacentes	O
-.	O
-A	O
-revolta	O
-histórica	O
-produz	O
-normalmente	O
-uma	O
-nova	O
-forma	O
-de	O
-pensamento	O
-quanto	O
-à	O
-forma	O
-de	O
-organização	O
-da	O
-sociedade	O
-.	O
-Assim	O
-foi	O
-com	O
-a	O
-Reforma	O
-Protestante	O
-.	O
-No	O
-seguimento	O
-do	O
-colapso	O
-de	O
-instituições	O
-monásticas	O
-e	O
-do	O
-escolasticismo	O
-nos	O
-finais	O
-da	O
-Idade	O
-Média	O
-na	O
-Europa	LOCATION
-,	O
-acentuado	O
-pela	O
-"	O
-Cativeiro	O
-Babilónica	O
-da	O
-igreja	O
-"	O
-no	O
-papado	O
-de	O
-Avignon	O
-,	O
-o	O
-.	O
+Fatores\tO
+Demográficos\tO
+e\tO
+Econômicos\tO
+Subjacentes\tO
+.\tO
+A\tO
+revolta\tO
+histórica\tO
+produz\tO
+normalmente\tO
+uma\tO
+nova\tO
+forma\tO
+de\tO
+pensamento\tO
+quanto\tO
+à\tO
+forma\tO
+de\tO
+organização\tO
+da\tO
+sociedade\tO
+.\tO
+Assim\tO
+foi\tO
+com\tO
+a\tO
+Reforma\tO
+Protestante\tO
+.\tO
+No\tO
+seguimento\tO
+do\tO
+colapso\tO
+de\tO
+instituições\tO
+monásticas\tO
+e\tO
+do\tO
+escolasticismo\tO
+nos\tO
+finais\tO
+da\tO
+Idade\tO
+Média\tO
+na\tO
+Europa\tLOCATION
+,\tO
+acentuado\tO
+pela\tO
+"\tO
+Cativeiro\tO
+Babilónica\tO
+da\tO
+igreja\tO
+"\tO
+no\tO
+papado\tO
+de\tO
+Avignon\tO
+,\tO
+o\tO
+.\tO
 OUTPUT
 
       expect(output_file).to receive(:close)

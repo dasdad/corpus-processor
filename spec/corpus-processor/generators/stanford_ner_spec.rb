@@ -15,7 +15,7 @@ describe CorpusProcessor::Generators::StanfordNer do
     context 'one token' do
       let(:tokens) { [CorpusProcessor::Token.new('banana')] }
 
-      it { should == "banana	O\n" }
+      it { should == "banana\tO\n" }
     end
 
     context 'two tokens' do
@@ -24,13 +24,13 @@ describe CorpusProcessor::Generators::StanfordNer do
         CorpusProcessor::Token.new('banana'),
       ] }
 
-      it { should == "good	O\nbanana	O\n" }
+      it { should == "good\tO\nbanana\tO\n" }
     end
 
     context 'with category' do
       let(:tokens) { [CorpusProcessor::Token.new('Leandro', :person)] }
 
-      it { should == "Leandro	PERSON\n" }
+      it { should == "Leandro\tPERSON\n" }
     end
 
     context 'with non-default categories' do
@@ -40,7 +40,7 @@ describe CorpusProcessor::Generators::StanfordNer do
 
       let(:tokens) { [CorpusProcessor::Token.new('Nanica', :banana)] }
 
-      it { should == "Nanica	BANANA\n" }
+      it { should == "Nanica\tBANANA\n" }
     end
   end
 end

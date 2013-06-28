@@ -6,7 +6,7 @@ module CorpusProcessor::Generators
 
     def generate(tokens)
       tokens.map { |token|
-        "#{ token.word }	#{ @categories[token.category] }"
+        "#{ token.word }\t#{ @categories[token.category] }"
       }.join("\n") + "\n"
     end
   end

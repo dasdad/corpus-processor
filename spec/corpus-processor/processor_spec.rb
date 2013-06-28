@@ -9,8 +9,8 @@ describe CorpusProcessor::Processor do
     let(:corpus) { 'Some corpus' }
     let(:processed_corpus) {
 <<-CORPUS
-Some	O
-corpus	O
+Some\tO
+corpus\tO
 CORPUS
     }
     let(:tokens) {
