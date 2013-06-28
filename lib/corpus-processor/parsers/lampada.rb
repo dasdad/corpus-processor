@@ -21,6 +21,8 @@ module CorpusProcessor::Parsers
       tokens
     end
 
+    protected
+
     def extract_category(categories)
       categories
         .split('|')

@@ -10,7 +10,9 @@ describe CorpusProcessor::Parsers::Lampada do
       context 'empty corpus' do
         let(:corpus) { '' }
 
-        it('returns an empty list') { should == [] }
+        it 'returns an empty list' do
+          should == []
+        end
       end
 
       context 'doctype' do
@@ -21,7 +23,9 @@ describe CorpusProcessor::Parsers::Lampada do
 CORPUS
         }
 
-        it('returns an empty list') { should == [] }
+        it 'returns an empty list' do
+          should == []
+        end
       end
 
       context 'simple phrase' do
@@ -94,7 +98,8 @@ CORPUS
 CORPUS
         }
 
-        it('ignores it') { should == [
+        it 'ignores that entity' do
+          should == [
             CorpusProcessor::Token.new('Nos'),
             CorpusProcessor::Token.new('finais'),
             CorpusProcessor::Token.new('da'),
@@ -102,10 +107,10 @@ CORPUS
             CorpusProcessor::Token.new('Média'),
             CorpusProcessor::Token.new('.'),
           ]
-        }
+        end
       end
 
-      context 'one entity' do
+      context 'one relevant entity' do
         let(:corpus) {
 <<-CORPUS.encode('ISO-8859-1')
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -120,7 +125,8 @@ CORPUS
 CORPUS
         }
 
-        it { should == [
+        it 'finds that entity' do
+          should == [
             CorpusProcessor::Token.new('Foram'),
             CorpusProcessor::Token.new('igualmente'),
             CorpusProcessor::Token.new('determinantes'),
@@ -134,11 +140,12 @@ CORPUS
             CorpusProcessor::Token.new('divulgação'),
             CorpusProcessor::Token.new('em'),
             CorpusProcessor::Token.new('Portugal', :location),
+            CorpusProcessor::Token.new('.'),
           ]
-        }
+        end
       end
 
-      context 'multiple entities' do
+      context 'multiple relevant entities' do
         let(:corpus) {
 <<-CORPUS.encode('ISO-8859-1')
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -242,34 +249,6 @@ CORPUS
           ]
         }
       end
-    end
-  end
-
-  describe '#extract_category' do
-    subject { lampada.extract_category(categories) }
-
-    context 'empty categories' do
-      let(:categories) { '' }
-
-      it { should == nil }
-    end
-
-    context 'one category' do
-      let(:categories) { 'PESSOA' }
-
-      it { should == :person }
-    end
-
-    context 'two categories' do
-      let(:categories) { 'OUTRA|ORGANIZACAO' }
-
-      it { should == :organization }
-    end
-
-    context 'ambiguidade' do
-      let(:categories) { 'PESSOA|ORGANIZACAO' }
-
-      it { should == :person }
     end
   end
 end
