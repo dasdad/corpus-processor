@@ -3,15 +3,17 @@ require 'spec_helper'
 require 'corpus-processor/cli'
 
 describe CorpusProcessor::Cli do
-  include FakeFS::SpecHelpers
   subject(:cli) { CorpusProcessor::Cli.new }
 
-  let(:input_file)  { 'input_file'  }
-  let(:output_file) { 'output_file' }
+  let(:input_file)  { STDIN  }
+  let(:output_file) { STDOUT }
 
-  before do
-    File.open(input_file, 'w') { |file|
-      file.write <<-INPUT
+  describe '#process' do
+    subject { cli.process }
+
+    before do
+      expect(input_file).to receive(:read)
+        .and_return(<<-INPUT.encode('ISO-8859-1'))
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
 <colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
@@ -30,20 +32,14 @@ describe CorpusProcessor::Cli do
       no papado de <EM ID="H2-dftre765-11" CATEG="ACONTECIMENTO" TIPO="EVENTO">Avignon</EM>
       , o
 INPUT
-    }
-  end
 
-  describe '#process' do
-    before do
-      cli.process(input_file, output_file)
-    end
-
-    specify { File.read(output_file).should == <<-OUTPUT }
+      expect(output_file).to receive(:puts).with(<<-OUTPUT)
 Fatores	O
 Demográficos	O
 e	O
 Econômicos	O
 Subjacentes	O
+.	O
 A	O
 revolta	O
 histórica	O
@@ -61,12 +57,14 @@ de	O
 organização	O
 da	O
 sociedade	O
+.	O
 Assim	O
 foi	O
 com	O
 a	O
 Reforma	O
 Protestante	O
+.	O
 No	O
 seguimento	O
 do	O
@@ -84,17 +82,24 @@ Idade	O
 Média	O
 na	O
 Europa	LOCATION
+,	O
 acentuado	O
 pela	O
+"	O
 Cativeiro	O
 Babilónica	O
 da	O
 igreja	O
+"	O
 no	O
 papado	O
 de	O
 Avignon	O
+,	O
 o	O
 OUTPUT
+    end
+
+    it('processes the corpus') { subject }
   end
 end

@@ -5,8 +5,6 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'fakefs/spec_helpers'
-
 require 'corpus-processor'
 
 RSpec.configure do |config|

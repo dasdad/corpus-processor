@@ -10,46 +10,48 @@ describe CorpusProcessor::Parsers::Lampada do
       context 'empty corpus' do
         let(:corpus) { '' }
 
-        it { should == [] }
+        it('returns an empty list') { should == [] }
       end
 
       context 'doctype' do
         let(:corpus) {
-<<-CORPUS
+<<-CORPUS.encode('ISO-8859-1')
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
 CORPUS
         }
 
-        it { should == [] }
+        it('returns an empty list') { should == [] }
       end
 
       context 'simple phrase' do
         let(:corpus) {
-<<-CORPUS
+<<-CORPUS.encode('ISO-8859-1')
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
 <colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
 <DOC DOCID="H2-dftre765">
-  <P>Fatores Demográficos e Econômicos Subjacentes</P>
+  <P>Fatores Demográficos e Econômicos Subjacentes.</P>
 </DOC>
 </colHAREM>
 CORPUS
         }
 
-        it { should == [
+        it 'tokenizes the phrase' do
+          should == [
             CorpusProcessor::Token.new('Fatores'),
             CorpusProcessor::Token.new('Demográficos'),
             CorpusProcessor::Token.new('e'),
             CorpusProcessor::Token.new('Econômicos'),
             CorpusProcessor::Token.new('Subjacentes'),
+            CorpusProcessor::Token.new('.'),
           ]
-        }
+        end
       end
 
       context 'two simple phrases' do
         let(:corpus) {
-<<-CORPUS
+<<-CORPUS.encode('ISO-8859-1')
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
 <colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
@@ -61,24 +63,27 @@ CORPUS
 CORPUS
         }
 
-        it { should == [
+        it 'tokenizes the phrase and appends periods where needed' do
+          should == [
             CorpusProcessor::Token.new('Fatores'),
             CorpusProcessor::Token.new('Demográficos'),
             CorpusProcessor::Token.new('e'),
             CorpusProcessor::Token.new('Econômicos'),
             CorpusProcessor::Token.new('Subjacentes'),
+            CorpusProcessor::Token.new('.'),
             CorpusProcessor::Token.new('Fatores'),
             CorpusProcessor::Token.new('Demográficos'),
             CorpusProcessor::Token.new('e'),
             CorpusProcessor::Token.new('Econômicos'),
             CorpusProcessor::Token.new('Subjacentes'),
+            CorpusProcessor::Token.new('.'),
           ]
-        }
+        end
       end
 
       context 'useless entity' do
         let(:corpus) {
-<<-CORPUS
+<<-CORPUS.encode('ISO-8859-1')
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
 <colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
@@ -89,19 +94,20 @@ CORPUS
 CORPUS
         }
 
-        it { should == [
+        it('ignores it') { should == [
             CorpusProcessor::Token.new('Nos'),
             CorpusProcessor::Token.new('finais'),
             CorpusProcessor::Token.new('da'),
             CorpusProcessor::Token.new('Idade'),
             CorpusProcessor::Token.new('Média'),
+            CorpusProcessor::Token.new('.'),
           ]
         }
       end
 
       context 'one entity' do
         let(:corpus) {
-<<-CORPUS
+<<-CORPUS.encode('ISO-8859-1')
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
 <colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
@@ -134,7 +140,7 @@ CORPUS
 
       context 'multiple entities' do
         let(:corpus) {
-<<-CORPUS
+<<-CORPUS.encode('ISO-8859-1')
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
 <colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
@@ -171,7 +177,7 @@ CORPUS
 
       context 'spaces after ponctuation' do
         let(:corpus) {
-<<-CORPUS
+<<-CORPUS.encode('ISO-8859-1')
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
 <colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">
@@ -202,7 +208,7 @@ CORPUS
 
       context 'multiple entities' do
         let(:corpus) {
-<<-CORPUS
+<<-CORPUS.encode('ISO-8859-1')
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE colHAREM>
 <colHAREM versao="Segundo_dourada_com_relacoes_14Abril2010">

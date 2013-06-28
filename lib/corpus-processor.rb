@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 require 'corpus-processor/version'
 require 'corpus-processor/token'
 require 'corpus-processor/default_categories'

@@ -1,44 +1,24 @@
 module CorpusProcessor::Parsers
   class Lampada
-
-    CATEGORY_REGEX = /
-      (?<any_text>           .*?                       ){0}
-      (?<entity_attributes>  \s\g<any_text>
-        CATEG="\g<categories>"\g<any_text>             ){0}
-      (?<entity_opening_tag> <em\g<entity_attributes>> ){0}
-      (?<entity_closing_tag> <\/em>                    ){0}
-
-      # groups of interest
-      (?<inner_text>         \g<any_text>              ){0}
-      (?<categories>         \g<any_text>              ){0}
-
-      \g<entity_opening_tag>\g<inner_text>\g<entity_closing_tag>
-    /ix
-
-    def initialize(categories = CorpusProcessor::DEFAULT_CATEGORIES[:input],
-                   traverser  = CorpusProcessor::Traverser.new,
-                   tokenizer  = CorpusProcessor::Tokenizer.new)
+    def initialize(categories = CorpusProcessor::DEFAULT_CATEGORIES[:input])
       @categories = categories
-      @traverser  = traverser
-      @tokenizer  = tokenizer
     end
 
     def parse(corpus)
-      [].tap { |tokens|
-        @traverser.traverse(@tokenizer.join_lines(corpus),
-                            CATEGORY_REGEX) do |match|
-          text_to_tokenize, category = case match
-                                       when String
-                                         [match, nil]
-                                       when MatchData
-                                         [
-                                           match[:inner_text],
-                                           extract_category(match[:categories])
-                                         ]
-                                       end
-          tokens.push(*@tokenizer.tokenize(text_to_tokenize, category))
+      tokens     = []
+      document   = Nokogiri::XML(corpus)
+      paragraphs = document.css('P')
+      punct      = /[[:punct:]]/
+
+      paragraphs.each do |paragraph|
+        words = paragraph.text.gsub(punct, ' \1').split(/\s+/)
+        words << '.' if ! words.empty? && words.last !~ punct
+        words.each do |word|
+          tokens << CorpusProcessor::Token.new(word)
         end
-      }
+      end
+
+      tokens
     end
 
     def extract_category(categories)
