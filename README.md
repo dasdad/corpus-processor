@@ -44,6 +44,16 @@ Converter _corpus_ do formato do LâMPADA 2.0 para o formato do Stanford-NER:
 $ corpus-processor process [INPUT_FILE [OUTPUT_FILE]]
 ```
 
+As classes reconhecidas por padrão pelo Corpus Processor são `PESSOA`, `LOCAL`
+e `ORGANIZACAO`. Para configurar outras classes, veja o arquivo de configuração
+em `lib/corpus-processor/categories/default.yml`.
+
+Para usar outras configurações, veja as opções com:
+
+```bash
+$ corpus-processor help process
+```
+
 Resultados
 ----------
 
@@ -105,6 +115,16 @@ Convert _corpus_ from LâMPADA 2.0 format to Stanford-NER format:
 
 ```bash
 $ corpus-processor process [INPUT_FILE [OUTPUT_FILE]]
+```
+
+Classes recognized by default in Corpus Processor are `PESSOA` (person),
+`LOCAL` (location) and `ORGANIZACAO` (organization). In order to configure
+other classes, refer to `lib/corpus-processor/categories/default.yml`.
+
+To run with different configurations, consult the options with:
+
+```bash
+$ corpus-processor help process
 ```
 
 Results
