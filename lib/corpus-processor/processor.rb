@@ -8,6 +8,6 @@ class CorpusProcessor::Processor
   end
 
   def process corpus
-    @generator.generate(@parser.parse(corpus))
+    @generator.generate @parser.parse(corpus)
   end
 end

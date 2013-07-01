@@ -1,1 +1,1 @@
-CorpusProcessor::Token = Struct.new(:word, :category)
+CorpusProcessor::Token = Struct.new :word, :category
