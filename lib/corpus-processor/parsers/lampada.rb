@@ -80,8 +80,8 @@ class CorpusProcessor::Parsers::Lampada
     end
 
     def extract categories_string
-      category = categories_string.split('|').find { |category|
-        categories.include? category
+      category = categories_string.split('|').find { |category_string|
+        categories.include? category_string
       }
 
       categories[category]
