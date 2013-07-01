@@ -1,0 +1,10 @@
+---
+:input:
+  PESSOA: :person
+  LOCAL: :location
+  ORGANIZACAO: :organization
+:output:
+  :default: O
+  :person: PERSON
+  :location: LOCATION
+  :organization: ORGANIZATION

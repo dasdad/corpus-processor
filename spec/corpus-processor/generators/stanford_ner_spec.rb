@@ -43,7 +43,8 @@ describe CorpusProcessor::Generators::StanfordNer do
 
     context 'with non-default categories' do
       let(:stanford_ner) {
-        CorpusProcessor::Generators::StanfordNer.new(banana: 'BANANA')
+        CorpusProcessor::Generators::StanfordNer.new(
+                                                  output: { banana: 'BANANA' })
       }
 
       let(:tokens) { [CorpusProcessor::Token.new('Nanica', :banana)] }

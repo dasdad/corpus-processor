@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe CorpusProcessor::Processor do
-  subject(:processor) { CorpusProcessor::Processor.new(parser, generator) }
+  subject(:processor) {
+    CorpusProcessor::Processor.new parser: parser, generator: generator
+  }
 
   describe '#process' do
     subject { processor.process(corpus) }

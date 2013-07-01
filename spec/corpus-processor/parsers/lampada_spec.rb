@@ -282,8 +282,10 @@ CORPUS
     context 'user-defined categories' do
       let(:lampada) {
         CorpusProcessor::Parsers::Lampada.new(
-          'FRUTA' => :fruit,
-          'LIVRO' => :book,
+          input: {
+            'FRUTA' => :fruit,
+            'LIVRO' => :book,
+          }
         )
       }
 

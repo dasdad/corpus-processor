@@ -1,6 +1,6 @@
 class CorpusProcessor::Parsers::Lampada
-  def initialize categories_map = CorpusProcessor::DEFAULT_CATEGORIES[:input]
-    self.categories_map = categories_map
+  def initialize categories = CorpusProcessor::Categories.default
+    self.categories = categories.fetch :input
   end
 
   def parse corpus
@@ -9,12 +9,8 @@ class CorpusProcessor::Parsers::Lampada
 
   protected
 
-    PUNCT        = /[[:punct:]]/
-    SPACES       = /\s+/
-    PERIOD_TOKEN = CorpusProcessor::Token.new('.')
-
-    attr_accessor :categories_map
-    attr_accessor :category
+    attr_accessor :categories
+    attr_accessor :current_category
 
     def process_nodes nodes
       nodes.reduce([]) { |tokens, node| tokens.push(*process_node(node)) }
@@ -32,11 +28,11 @@ class CorpusProcessor::Parsers::Lampada
     end
 
     def process_text text
-      text.gsub(PUNCT, ' \0 ')
+      text.gsub(punct, ' \0 ')
           .strip
-          .split(SPACES)
+          .split(spaces)
           .map { |word|
-        CorpusProcessor::Token.new(word, category)
+        CorpusProcessor::Token.new(word, current_category)
       }
     end
 
@@ -51,18 +47,12 @@ class CorpusProcessor::Parsers::Lampada
 
     def process_p p
       tokens = process_nodes p.children
-      tokens << PERIOD_TOKEN if ! tokens.empty? && tokens.last.word !~ PUNCT
+      tokens << period_token if ! tokens.empty? && tokens.last.word !~ punct
       tokens
     end
 
     def process_em em
-      categ_attribute = em.attributes['CATEG']
-      unless categ_attribute.nil?
-        self.category = extract categ_attribute.text
-      end
-      tokens = process_nodes em.children
-      self.category = nil
-      tokens
+      with_category em.attributes['CATEG'] { process_nodes em.children }
     end
 
     def process_alt alt
@@ -80,11 +70,32 @@ class CorpusProcessor::Parsers::Lampada
       }
     end
 
-    def extract categories
-      category = categories.split('|').find { |category|
-        categories_map.include? category
+    def with_category categories_attribute, &block
+      unless categories_attribute.nil?
+        self.current_category = extract categories_attribute.text
+      end
+      tokens = block.call
+      self.current_category = nil
+      tokens
+    end
+
+    def extract categories_string
+      category = categories_string.split('|').find { |category|
+        categories.include? category
       }
 
-      categories_map[category]
+      categories[category]
+    end
+
+    def punct
+      /[[:punct:]]/
+    end
+
+    def spaces
+      /\s+/
+    end
+
+    def period_token
+      @period_token ||= CorpusProcessor::Token.new('.')
     end
 end
