@@ -1,7 +1,8 @@
 class CorpusProcessor::Processor
   def initialize(
-    parser:     CorpusProcessor::Parsers::Lampada.new,
-    generator:  CorpusProcessor::Generators::StanfordNer.new)
+    categories: CorpusProcessor::Categories.default,
+    parser:     CorpusProcessor::Parsers::Lampada.new(categories),
+    generator:  CorpusProcessor::Generators::StanfordNer.new(categories))
     @parser    = parser
     @generator = generator
   end
