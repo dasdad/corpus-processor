@@ -5,6 +5,11 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+if ENV['CI'] == 'true'
+  require 'coveralls'
+  Coveralls.wear!
+end
+
 require 'corpus-processor'
 
 RSpec.configure do |config|
