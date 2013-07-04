@@ -1,3 +1,4 @@
+# Namespace for generators.
 module CorpusProcessor::Generators
 end
 

@@ -1,3 +1,4 @@
+# Namespace for parsers.
 module CorpusProcessor::Parsers
 end
 

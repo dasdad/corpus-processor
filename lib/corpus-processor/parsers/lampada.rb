@@ -1,8 +1,15 @@
+# The parser for the corpus in LâMPADA format.
 class CorpusProcessor::Parsers::Lampada
+
+  # @param (see Generators::StanfordNer#initialize)
   def initialize categories = CorpusProcessor::Categories.default
     self.categories = categories.fetch :input
   end
 
+  # Parse the corpus in LâMPADA format.
+  #
+  # @param corpus [String] the original corpus.
+  # @return [Array<CorpusProcessor::Token>] the tokens extracted from corpus.
   def parse corpus
     process_nodes Nokogiri::XML(corpus).css('P')
   end
