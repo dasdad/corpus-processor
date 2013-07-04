@@ -17,9 +17,16 @@ class CorpusProcessor::Token
   # @param word [String] the word from text. It shouldn't contain spaces.
   # @param category [Symbol] the type of the {Token}. It should be a valid
   #   category from {Categories}.
-  def initialize word, category = nil
+  def initialize word = '', category = nil
     self.word     = word
     self.category = category
+  end
+
+  # Determine equality of two {Token}s.
+  #
+  # @param other [Token] the other {Token} to test.
+  def ==(other)
+    word == other.word && category == other.category
   end
 
   protected
