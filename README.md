@@ -60,6 +60,7 @@ Resultados
 
 Os resultados do uso do [Corpus Processor][16] com um _corpus_ do
 [LâMPADA 2.0 / Classic HAREM 2.0 Golden Collection][17] - disponível na
+[Linguateca][20] - estão [neste diretório][19]:
 
 * `ner-pt_br.training.txt`: O _corpus_ da [Linguateca][20] convertido com o
   [Corpus Processor][21] para o formato de treinamento do [Stanford NER][22].
@@ -173,6 +174,7 @@ Results
 
 The results of using [Corpus Processor][42] with a _corpus_ from
 [LâMPADA 2.0 / Classic HAREM 2.0 Golden Collection][43] - available in
+[Linguateca][20] - [this directory][19]:
 
 * `ner-pt_br.training.txt`: The _corpus_ from [Linguateca][46] converted with
   [Corpus Processor][47] to [Stanford NER][48] training format.
