@@ -90,7 +90,7 @@ CRFClassifier tagged 4450 words in 1 documents at 3632.65 words per second.
          Totals 0.5065  0.3861  0.4382  78      76      124
 ```
 
-Essa performance é ruim se compara com [outros trabalho][28] sobre o assunto,
+Essa performance é ruim se compara com [outros trabalhos][28] sobre o assunto,
 mas tem servido aos nossos propósitos. Nós continuaremos tentando melhorar
 essa situação.
 
