@@ -58,15 +58,50 @@ $ corpus-processor help process
 Resultados
 ----------
 
-Para um exemplo de conversão usando o Corpus Processor, veja este [gist][16].
+Os resultados do uso do [Corpus Processor][16] com um _corpus_ do
+[LâMPADA 2.0 / Classic HAREM 2.0 Golden Collection][17] - disponível na
 
-O _corpus_ é do [LâMPADA 2.0 / Classic HAREM 2.0 Golden Collection][17] e o
-treinamento usou o [Stanford NER][18].
+* `ner-pt_br.training.txt`: O _corpus_ da [Linguateca][20] convertido com o
+  [Corpus Processor][21] para o formato de treinamento do [Stanford NER][22].
+* `ner-pt_br.training-partial.txt`: Os primeiros 95% do _corpus_ em
+  `ner-pt_br.training.txt`, usados para o teste de precisão do
+  [Stanford NER][23].
+* `ner-pt_br.test.txt`: Os últimos 5% do curpus em `ner-pt_br.training.txt`,
+  usado para testar o modelo linguístico.
+* `ner-pt_br.prop`: O arquivo de propriedados no formato do [Stanford NER][24]
+  que é usado para treinar com o `ner-pt_br.training.txt`.
+* `ner-pt_br.partial.prop`: O arquivo de propriedados no formato do
+  [Stanford NER][25] que é usado para treinar com o
+  `ner-pt_br.training-partial.txt`.
+* `ner-pt_br.ser.gz`: O modelo linguístico no formato do [Stanford NER][26]
+  resultante do treinamento com o `ner-pt_br.training.txt`.
+* `ner-pt_br.ser-partial.gz`: O modelo linguístico no formato do
+  [Stanford NER][27] resultante do treinamento com o
+  `ner-pt_br.training-partial.txt`.
+
+A performance do modelo linguístico testado é:
+
+```
+CRFClassifier tagged 4450 words in 1 documents at 3632.65 words per second.
+         Entity P       R       F1      TP      FP      FN
+       LOCATION 0.5667  0.3953  0.4658  17      13      26
+   ORGANIZATION 0.4531  0.2500  0.3222  29      35      87
+         PERSON 0.5333  0.7442  0.6214  32      28      11
+         Totals 0.5065  0.3861  0.4382  78      76      124
+```
+
+Essa performance é ruim se compara com [outros trabalho][28] sobre o assunto,
+mas tem servido aos nossos propósitos. Nós continuaremos tentando melhorar
+essa situação.
+
+Sugestões são bem vindas sobre como fazer isso.
+
+---
 
 **Note** que a transformação do Corpus Processor descarta muita informação do
 _corpus_ anotado. Os _corpora_ usados são bastante ricos em anotações e para
 tirar completo proveito deles considere usar as ferramentas encontradas na
-[Linguateca][19].
+[Linguateca][29].
 
 Para entender melhor, siga as seguintes referências:
 
@@ -77,32 +112,37 @@ http://www.linguateca.pt/aval_conjunta/LivroHAREM/Cap04-SantosCardoso2007-Santos
 Diana Santos. "Evaluation in natural language processing". European Summer School on Language, Logic and Information (ESSLLI 2007) (Trinity College, Dublin, Irlanda, 6-17 de Agosto de 2007).
 ```
 
+---
+
+[Leia mais sobre o processo de treinamento][30].
+
+
 Agradecimentos
 --------------
 
-* [Time do HAREM / Linguateca][20] pelo _corpus_ com anotações semânticas em
+* [Time do HAREM / Linguateca][31] pelo _corpus_ com anotações semânticas em
   português.
-* *[Time de NLP de Stanford][21]* pela ferramenta [Stanford NER][22].
+* *[Time de NLP de Stanford][32]* pela ferramenta [Stanford NER][33].
 
 English version
 ===============
 
-Corpus Processor is a tool to work with [Corpus Linguistics][23]. It converts
+Corpus Processor is a tool to work with [Corpus Linguistics][34]. It converts
 _corpora_ between different formats for use in Natural Language Processing
 (NLP) tools.
 
 The first purpose of Corpus Processor and its current only feature is to
-transform _corpora_ found in [Linguateca][24] into the format used for training
-in [Stanford NER][25].
+transform _corpora_ found in [Linguateca][35] into the format used for training
+in [Stanford NER][36].
 
-[Linguateca][26] is an source of _corpora_ in Portuguese.
+[Linguateca][37] is an source of _corpora_ in Portuguese.
 
-[Stanford NER][27] is an implementation of [Named Entity Recognition][28].
+[Stanford NER][38] is an implementation of [Named Entity Recognition][39].
 
 Installation
 ------------
 
-Corpus Processor is a [Ruby][29] [Gem][30]. To install it, given a working
+Corpus Processor is a [Ruby][40] [Gem][41]. To install it, given a working
 installation of Ruby, run:
 
 ```bash
@@ -131,16 +171,48 @@ $ corpus-processor help process
 Results
 -------
 
-For an example of converting one _corpus_ with Corpus Processor, refer to this
-[gist][31].
+The results of using [Corpus Processor][42] with a _corpus_ from
+[LâMPADA 2.0 / Classic HAREM 2.0 Golden Collection][43] - available in
 
-The _corpus_ is from [LâMPADA 2.0 / Classic HAREM 2.0 Golden Collection][32]
-and the training used [Stanford NER][33].
+* `ner-pt_br.training.txt`: The _corpus_ from [Linguateca][46] converted with
+  [Corpus Processor][47] to [Stanford NER][48] training format.
+* `ner-pt_br.training-partial.txt`: The first 95% of the _corpus_ in
+  `ner-pt_br.training.txt`, used for training [Stanford NER][49] for accuracy
+  testing.
+* `ner-pt_br.test.txt`: The last 5% of the _corpus_ in
+  `ner-pt_br.training.txt`, used to test the language model.
+* `ner-pt_br.prop`: The property file in [Stanford NER][50]'s format for
+  setting up the training with the whole `ner-pt_br.training.txt`.
+* `ner-pt_br.partial.prop`: The property file in [Stanford NER][51]'s format
+  for setting up the training with the partial
+  `ner-pt_br.training-partial.txt`.
+* `ner-pt_br.ser.gz`: The resulting language model for [Stanford NER][52]
+  trained with `ner-pt_br.training.txt`.
+* `ner-pt_br.ser-partial.gz`: The resulting language model for
+  [Stanford NER][53] trained with `ner-pt_br.training-partial.txt`.
+
+The performance of the language model under test is:
+
+```
+CRFClassifier tagged 4450 words in 1 documents at 3632.65 words per second.
+         Entity P       R       F1      TP      FP      FN
+       LOCATION 0.5667  0.3953  0.4658  17      13      26
+   ORGANIZATION 0.4531  0.2500  0.3222  29      35      87
+         PERSON 0.5333  0.7442  0.6214  32      28      11
+         Totals 0.5065  0.3861  0.4382  78      76      124
+```
+
+This performance is poor if compared with [other works][54] on the topic,
+but it has served well our purposes. We'll keep trying to improve on this.
+
+Suggestions are welcome in this regard.
+
+---
 
 **Note** that the transformation performed by Corpus Processor discards lots
 of information from the annotated _corpus_. The _corpora_ used in this process
 are very rich in annotations, in order to extract all of it consider using one
-of the tools found in [Linguateca][34].
+of the tools found in [Linguateca][55].
 
 Further information about the subject can be found in the following sources:
 
@@ -151,12 +223,16 @@ http://www.linguateca.pt/aval_conjunta/LivroHAREM/Cap04-SantosCardoso2007-Santos
 Diana Santos. "Evaluation in natural language processing". European Summer School on Language, Logic and Information (ESSLLI 2007) (Trinity College, Dublin, Irlanda, 6-17 de Agosto de 2007).
 ```
 
+---
+
+[Read more about the process of training][56].
+
 Thanks
 ------
 
-* [HAREM / Linguateca team][35] for the semantic annotated _corpus_ in
+* *[HAREM / Linguateca team][57]* for the semantic annotated _corpus_ in
   Portuguese.
-* *[Stanford NLP team][36]* for the [Stanford NER][37] tool.
+* *[Stanford NLP team][58]* for the [Stanford NER][59] tool.
 
 Contributing
 ------------
@@ -176,8 +252,8 @@ Changelog
 
 ### 0.0.1
 
-* [LâMPADA 2.0 / Classic HAREM 2.0 Golden Collection][38] Parser.
-* [Stanford NER][39] Generator.
+* [LâMPADA 2.0 / Classic HAREM 2.0 Golden Collection][60] Parser.
+* [Stanford NER][61] Generator.
 
 License
 -------
@@ -221,27 +297,49 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [13]: http://pt.wikipedia.org/wiki/Reconhecimento_de_entidade_mencionada
 [14]: http://www.ruby-lang.org/
 [15]: http://rubygems.org/
-[16]: https://gist.github.com/leafac/5259008
+[16]: https://github.com/dasdad/corpus-processor
 [17]: http://www.linguateca.pt/HAREM/
-[18]: http://nlp.stanford.edu/software/CRF-NER.shtml
-[19]: http://www.linguateca.pt
-[20]: http://www.linguateca.pt/HAREM
-[21]: http://www-nlp.stanford.edu/
+[18]: http://www.linguateca.pt/
+[19]: https://www.dropbox.com/sh/8p6cbbcaoyv23u7/GxY0qKObYV/corpus
+[20]: http://www.linguateca.pt/
+[21]: https://github.com/dasdad/corpus-processor
 [22]: http://nlp.stanford.edu/software/CRF-NER.shtml
-[23]: http://en.wikipedia.org/wiki/Corpus_linguistics
-[24]: http://www.linguateca.pt
+[23]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[24]: http://nlp.stanford.edu/software/CRF-NER.shtml
 [25]: http://nlp.stanford.edu/software/CRF-NER.shtml
-[26]: http://www.linguateca.pt
+[26]: http://nlp.stanford.edu/software/CRF-NER.shtml
 [27]: http://nlp.stanford.edu/software/CRF-NER.shtml
-[28]: http://en.wikipedia.org/wiki/Named-entity_recognition
-[29]: http://www.ruby-lang.org/
-[30]: http://rubygems.org/
-[31]: https://gist.github.com/leafac/5259008
-[32]: http://www.linguateca.pt/HAREM/
+[28]: ftp://ftp.inf.puc-rio.br/pub/docs/techreports/07_09_duarte.pdf
+[29]: http://www.linguateca.pt
+[30]: http://nlp.stanford.edu/software/crf-faq.shtml
+[31]: http://www.linguateca.pt/HAREM
+[32]: http://www-nlp.stanford.edu/
 [33]: http://nlp.stanford.edu/software/CRF-NER.shtml
-[34]: http://www.linguateca.pt
-[35]: http://www.linguateca.pt/HAREM
-[36]: http://www-nlp.stanford.edu/
-[37]: http://nlp.stanford.edu/software/CRF-NER.shtml
-[38]: http://www.linguateca.pt/HAREM/
-[39]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[34]: http://en.wikipedia.org/wiki/Corpus_linguistics
+[35]: http://www.linguateca.pt
+[36]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[37]: http://www.linguateca.pt
+[38]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[39]: http://en.wikipedia.org/wiki/Named-entity_recognition
+[40]: http://www.ruby-lang.org/
+[41]: http://rubygems.org/
+[42]: https://github.com/dasdad/corpus-processor
+[43]: http://www.linguateca.pt/HAREM/
+[44]: http://www.linguateca.pt/
+[45]: https://www.dropbox.com/sh/8p6cbbcaoyv23u7/GxY0qKObYV/corpus
+[46]: http://www.linguateca.pt/
+[47]: https://github.com/dasdad/corpus-processor
+[48]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[49]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[50]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[51]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[52]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[53]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[54]: ftp://ftp.inf.puc-rio.br/pub/docs/techreports/07_09_duarte.pdf
+[55]: http://www.linguateca.pt
+[56]: http://nlp.stanford.edu/software/crf-faq.shtml
+[57]: http://www.linguateca.pt/HAREM
+[58]: http://www-nlp.stanford.edu/
+[59]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[60]: http://www.linguateca.pt/HAREM/
+[61]: http://nlp.stanford.edu/software/CRF-NER.shtml
