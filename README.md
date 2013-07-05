@@ -174,7 +174,7 @@ Results
 
 The results of using [Corpus Processor][42] with a _corpus_ from
 [LâMPADA 2.0 / Classic HAREM 2.0 Golden Collection][43] - available in
-[Linguateca][20] - [this directory][19]:
+[Linguateca][20] - are in [this directory][19]:
 
 * `ner-pt_br.training.txt`: The _corpus_ from [Linguateca][46] converted with
   [Corpus Processor][47] to [Stanford NER][48] training format.
