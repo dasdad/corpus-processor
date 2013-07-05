@@ -248,6 +248,15 @@ Contributing
 Changelog
 ---------
 
+### 0.3.0
+
+* Stoped using Regex for parser and started using [Nokogiri][62].
+* Fixed missing punctuation.
+* Fixed inconsistencies in tagging. The issue was caused by `<ALT>` tags.
+* Accepted categories definitions from users.
+* Installed several measures for quality of code.
+* Added documentation.
+
 ### 0.2.0
 
 * Renamed Harem to LâMPADA, as asked by Linguateca's team.
@@ -345,3 +354,4 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [59]: http://nlp.stanford.edu/software/CRF-NER.shtml
 [60]: http://www.linguateca.pt/HAREM/
 [61]: http://nlp.stanford.edu/software/CRF-NER.shtml
+[62]: http://nokogiri.org/
